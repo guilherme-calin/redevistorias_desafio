@@ -1,0 +1,20 @@
+body {
+  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  background-color: #D32F2F;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  font-family: 'Roboto', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

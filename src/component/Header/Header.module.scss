@@ -1,0 +1,51 @@
+.Header {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+}
+
+.outer-circle {
+  align-items: center;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  height: 37px;
+  justify-content: center;
+  margin: 0.4rem 1rem;
+  width: 37px;
+}
+
+.inner-circle {
+  background: #38387C;
+  background: radial-gradient(circle, rgba(14,118,223,1) 0%, rgba(28,97,189,1) 13%, rgba(56,56,124,1) 33%);
+  border-radius: 50%;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+  height: 27px;
+  width: 27px;
+}
+
+.small-circle {
+  border-radius: 50%;
+  height: 10px;
+  margin: 0.2rem 0.3rem;
+  width: 10px;
+}
+
+.red {
+  background-color: #FF0000;
+}
+
+.yellow {
+  background-color: #FFFF00;
+}
+
+.green {
+  background-color: #00FF00;
+}
+
+
+
+

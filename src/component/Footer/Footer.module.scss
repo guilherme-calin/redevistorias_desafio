@@ -1,0 +1,65 @@
+.Footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  padding: 0 1rem;
+  justify-content: space-between;
+}
+
+.circle {
+  border-radius: 50%;
+  height: 27px;
+  width: 27px;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  justify-content: space-around;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.bar {
+  border-radius: 5px;
+  height: 5px;
+  margin: 0 0.25rem;
+  width: 40px;
+}
+
+.screen {
+  background-color: #67C258;
+  height: 20px;
+  width: 100px;
+}
+
+.gamepad-icon {
+  background-image: url("./assets/gamepad.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 37px;
+  width: 37px;
+}
+
+.red {
+  background-color: #FF0000;
+}
+
+.blue {
+  background-color: #38387C;
+}
+
+.black {
+  background-color: #000000;
+}
+
+
+
+
+
+

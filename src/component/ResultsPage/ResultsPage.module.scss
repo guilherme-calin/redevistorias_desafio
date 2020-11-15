@@ -1,0 +1,51 @@
+.ResultsPage {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+
+  section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    transition: opacity linear 0.1s;
+  }
+}
+
+.result-container {
+  flex: 0 0 125px;
+  margin: 0.4rem 0.15rem;
+
+}
+
+.loading {
+  align-self: center;
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  background-image: url("./assets/pokeball.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: spin 1s linear infinite;
+  transition: opacity linear 0.1s;
+}
+
+.loading.in-center {
+  margin: auto;
+}
+
+.js-inactive {
+  opacity: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
