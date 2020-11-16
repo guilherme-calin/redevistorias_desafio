@@ -34,4 +34,22 @@ export default class PokeApi {
             }
         })
     }
+
+    public getPokemonInformation(pokemon :Pokemon) : Promise<void> {
+        return new Promise (async (resolve, reject) => {
+            let pokemonCode :string = pokemon.getCode();
+
+            try{
+                //Uma requisição para pegar a quantidade total de Pokemons
+                let result = await fetch(PokeApi.baseUrl + pokemonCode);
+                let jsonResult = await result.json();
+
+                pokemon.setAdditionalInfo(jsonResult);
+
+                resolve();
+            }catch (err) {
+                reject(err);
+            }
+        })
+    }
 }

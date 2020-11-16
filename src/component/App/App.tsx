@@ -9,6 +9,7 @@ import PageControl from "../PageControl/PageControl";
 import Pokemon from "../../model/Pokemon";
 import PokeApi from "../../service/PokeApi";
 import ResultsPage from "../ResultsPage/ResultsPage";
+import PokemonInfo from "../PokemonInfo/PokemonInfo";
 
 type Props = {};
 type State = {
@@ -46,20 +47,22 @@ export default class App extends Component<Props, State> {
                 pageLoading : false,
                 pokemonFullList : list,
                 pokemonSearchList : list
-            }, () => this.inputRef.current?.focus());
+            }, () => {
+                this.inputRef.current?.focus();
+                this.inputRef.current.addEventListener("search", this.onSearch);
+            });
         });
 
         return
     }
 
-    shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>, nextContext: any): boolean {
-        return true;
-    }
 
     render(): ReactNode {
         return (
             <div className={styles.App}>
                 <Header></Header>
+
+                <PokemonInfo pokemon={this.state.pokemonFullList[0]}></PokemonInfo>
                 <section className={styles["app-body"]}>
                     <section className={styles["app-body_head"]}>
                         <div className={`${styles["small-circle"]} ${styles["red"]}`}></div>
@@ -73,7 +76,7 @@ export default class App extends Component<Props, State> {
                                 <Fragment>
 
                                         <img src={logo} alt="Logotipo da Pokedex"/>
-                                        <input type="search" ref={this.inputRef} placeholder="nome ou número"/>
+                                        <input type="search" ref={this.inputRef} placeholder="nome ou número" name="go" onKeyUp={(event) => this.onKeyUpHandler(event)}/>
                                         <button onClick={this.onSearch}>Pesquisar</button>
 
                                         {
@@ -149,5 +152,14 @@ export default class App extends Component<Props, State> {
             pokemonSearchList,
             currentPage : 1
         });
+    }
+
+    public onKeyUpHandler(event :any) :void {
+        if(event.keyCode === 13 ||
+            (this.inputRef.current.value.length === 0)) {
+            this.onSearch();
+        }
+
+        return
     }
 }

@@ -1,0 +1,159 @@
+.PokemonInfo {
+position: absolute;
+  top: 50px;
+  right: 15px;
+  height: calc(100vh - 100px);
+  border: 1px solid green;
+  width: 330px;
+  background-color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .info-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 25px;
+  }
+
+  .info-body {
+    display: flex;
+    flex-direction: row;
+    height: calc(100% - 50px);
+  }
+
+  .color-bar {
+    width: 50%;
+    border: 1px solid black;
+  }
+
+  .info-foot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 25px;
+
+    .small-circle {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.small-circle {
+  border-radius: 50%;
+  height: 10px;
+  margin: 0.2rem 0.3rem;
+  width: 10px;
+}
+
+.line-box {
+  width: 20px;
+  margin: 0 1rem;
+}
+
+.line {
+  border-bottom: 1px solid black;
+  margin: 0.1rem 0;
+}
+
+.red {
+  background-color: #CC0000;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.type-color_normal {
+  background-color: #A8A878;
+}
+
+.type-color_fighting {
+  background-color: #C03028;
+}
+
+.type-color_flying {
+  background-color: #A890F0;
+}
+
+.type-color_poison {
+  background-color: #A040A0;
+}
+
+.type-color_ground {
+  background-color: #E0C068;
+}
+
+.type-color_rock {
+  background-color: #B8A038;
+}
+
+.type-color_bug {
+  background-color: #A8B820;
+}
+
+.type-color_ghost {
+  background-color: #705898;
+}
+
+.type-color_steel {
+  background-color: #B8B8D0;
+}
+
+.type-color_fire {
+  background-color: #F08030;
+}
+
+.type-color_water {
+  background-color: #6890F0;
+}
+
+.type-color_grass {
+  background-color: #78C850;
+}
+
+.type-color_electric {
+  background-color: #F8D030;
+}
+
+.type-color_psychic {
+  background-color: #F85888;
+}
+
+.type-color_ice {
+  background-color: #98D8D8;
+}
+
+.type-color_dragon {
+  background-color: #7038F8;
+}
+
+.type-color_dark {
+  background-color: #705848;
+}
+
+.type-color_fairy {
+  background-color: #EE99AC;
+}
+
+.type-color_unknown {
+  background-color: #68A090;
+}
+
+.type-color_shadow {
+  background-color: #ABABAB;
+}
+
+
+
+
+
+
