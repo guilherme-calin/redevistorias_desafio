@@ -1,11 +1,13 @@
+//Componentes essenciais e estilo
 import React, {Component, ReactNode} from 'react';
 import styles from './PageControl.module.scss';
 
 type Props = {
+    identifier :string,
     currentPage :number,
     records :number,
     recordsPerPage :number,
-    onPageChangeCallback : (page :number) => void
+    onPageChangeCallback : (page :number, identifier :string) => void
 };
 type State = {};
 
@@ -14,15 +16,10 @@ export default class PageControl extends Component<Props, State> {
         super(props);
     }
 
-    componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
-
-    }
-
     render(): ReactNode {
         let previousPageClickable :boolean = false;
         let nextPageClickable :boolean = false;
         let numberOfPages :number = Math.ceil(this.props.records / this.props.recordsPerPage);
-
 
         if(this.props.currentPage > 1) {
             previousPageClickable = true;
@@ -32,30 +29,38 @@ export default class PageControl extends Component<Props, State> {
             nextPageClickable = true
         }
 
-
-
         return (
             <div className={styles["PageControl"]}>
                 <ul>
                     {previousPageClickable ?
                         <li className={styles["button"]}
                             onClick={(event) => this.onPageChangeHandler(-1)}
-                            >&#60;</li>
+                            >&#60;</li> // &#60; = <
                         :
-                        <li>&#60;</li>
+                        <li>&#60;</li> // &#60; = <
                     }
+
                     <li>{this.props.currentPage} de {numberOfPages}</li>
+
                     {nextPageClickable ?
                         <li className={styles["button"]}
-                            onClick={() => this.onPageChangeHandler(1)}>&#62;</li>
+                            onClick={() => this.onPageChangeHandler(1)}
+                        >&#62;</li> // &#62; = >
                         :
-                        <li>&#62;</li>
+                        <li>&#62;</li> // &#62; = >
                     }
                 </ul>
             </div>
         );
     }
 
+    /*
+        O parâmetro operation indica se está avançando ou retrocedendo
+        uma página.
+        operation -1 indica retroceder
+        operation +1 indica avançar
+     */
+    //
     public onPageChangeHandler = (operation :number) :void => {
         let numberOfPages :number = Math.ceil(this.props.records / this.props.recordsPerPage);
         let newPage :number = this.props.currentPage;
@@ -66,28 +71,8 @@ export default class PageControl extends Component<Props, State> {
             newPage = this.props.currentPage - 1;
         }
 
-        if(newPage != this.props.currentPage){
-            let previousPageClickable :boolean;
-            let nextPageClickable :boolean;
-
-            if(newPage === 1) {
-                previousPageClickable = false;
-            } else {
-                previousPageClickable = true;
-            }
-
-            if(newPage === numberOfPages) {
-                nextPageClickable = false;
-            } else {
-                nextPageClickable = true;
-            }
-
-            this.props.onPageChangeCallback(newPage);
-
-            this.setState({
-                previousPageClickable,
-                nextPageClickable
-            });
+        if(newPage !== this.props.currentPage){
+            this.props.onPageChangeCallback(newPage, this.props.identifier);
         }
 
         return

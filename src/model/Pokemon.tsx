@@ -3,8 +3,8 @@ export default class Pokemon {
     private code :string;
     private name :string;
 
-
     //Atributos do Pokemon
+    private areAdditionalInformationSet :boolean;
     private hp :number;
     private attack :number;
     private defense :number;
@@ -12,13 +12,14 @@ export default class Pokemon {
     private specialDefense :number;
     private speed :number;
     private types :string[];
+    private doesItEvolve :boolean;
 
     //Mapeamento dos tipos com o nome em português e as classes CSS adequadas
     public static typeMap :Map<string, any> = Pokemon.getTypeMap();
 
-    constructor(code :string, name :string) {
-        this.code = code;
-        this.name = this.capitalizeFirstLetter(name);
+    constructor(code? :string, name? :string) {
+        this.code = code || "";
+        this.name = this.capitalizeFirstLetter(name || "");
 
         this.hp = -1;
         this.attack = -1;
@@ -27,6 +28,8 @@ export default class Pokemon {
         this.specialDefense = -1;
         this.speed = -1;
         this.types = [];
+        this.doesItEvolve = false;
+        this.areAdditionalInformationSet = false;
     }
 
     public getCode() :string {
@@ -54,7 +57,11 @@ export default class Pokemon {
         return capitalizedName;
     }
 
-    public setAdditionalInfo(pokeapiResponse :any) :void {
+    public getAreAdditionalInformationSet() :boolean {
+        return this.areAdditionalInformationSet;
+    }
+
+    public setAdditionalInformation(pokeapiResponse :any) :void {
         for(let stat of pokeapiResponse.stats) {
             if(stat.stat.name === "hp") {
                 this.hp = stat.base_stat;
@@ -72,114 +79,150 @@ export default class Pokemon {
         }
 
         for(let type of pokeapiResponse.types) {
-            this.types.push(type.name);
+            this.types.push(type.type.name);
         }
+
+        this.doesItEvolve = pokeapiResponse.doesItEvolve;
+
+        this.areAdditionalInformationSet = true;
 
         return
     }
 
+    public getStatus() :any {
+        return {
+            hp: this.hp,
+            attack: this.attack,
+            defense: this.defense,
+            speed: this.speed,
+            specialAttack: this.specialAttack,
+            specialDefense: this.specialDefense
+        }
+    }
+
+    public getDoesItEvolve() {
+        return this.doesItEvolve;
+    }
+
+    public getTypeInformation() :any[] {
+        let typeInfo :any[] = [];
+
+        if(this.types.length > 0) {
+            typeInfo[0] = Pokemon.typeMap.get(this.types[0]);
+
+            if(this.types.length > 1) {
+                typeInfo[1] = Pokemon.typeMap.get(this.types[1]);
+            }else {
+                typeInfo[1] = typeInfo[0];
+            }
+        }
+
+        return typeInfo
+    }
+
+    //Mapeamento dos tipos com o nome em português e as classes CSS adequadas
     public static getTypeMap() :Map<string, any>{
         let typeMap :Map<string, any> = new Map();
 
-        Pokemon.typeMap.set("normal", {
-            cssClass : "type-color_normal",
-            cssTextColorClass : "text-black",
-            portugueseType : "Normal"
+        typeMap.set("normal", {
+            cssClass : "js-type-color_normal",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Normal"
         });
-        Pokemon.typeMap.set("fighting", {
-            cssClass : "type-color_fighting",
-            cssTextColorClass : "text-white",
-            portugueseType : "Lutador"
+        typeMap.set("fighting", {
+            cssClass : "js-type-color_fighting",
+            cssTextClass : "js-text-white",
+            portugueseTypeName : "Lutador"
         });
-        Pokemon.typeMap.set("flying", {
-            cssClass : "type-color_flying",
-            cssTextColorClass : "text-black",
-            portugueseType : "Voador"
+        typeMap.set("flying", {
+            cssClass : "js-type-color_flying",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Voador"
         });
-        Pokemon.typeMap.set("poison", {
-            cssClass : "type-color_poison",
-            cssTextColorClass : "text-white",
-            portugueseType : "Venenoso"
+        typeMap.set("poison", {
+            cssClass : "js-type-color_poison",
+            cssTextClass : "js-text-white",
+            portugueseTypeName : "Venenoso"
         });
-        Pokemon.typeMap.set("ground", {
-            cssClass : "type-color_ground",
-            cssTextColorClass : "text-black",
-            portugueseType : "Terra"
+        typeMap.set("ground", {
+            cssClass : "js-type-color_ground",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Terra"
         });
-        Pokemon.typeMap.set("rock", {
-            cssClass : "type-color_rock",
-            cssTextColorClass : "text-black",
-            portugueseType : "Pedra"
+        typeMap.set("rock", {
+            cssClass : "js-type-color_rock",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Pedra"
         });
-        Pokemon.typeMap.set("bug", {
-            cssClass : "type-color_bug",
-            cssTextColorClass : "text-black",
-            portugueseType : "Inseto"
+        typeMap.set("bug", {
+            cssClass : "js-type-color_bug",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Inseto"
         });
-        Pokemon.typeMap.set("ghost", {
-            cssClass : "type-color_ghost",
-            cssTextColorClass : "text-white",
-            portugueseType : "Fantasma"
+        typeMap.set("ghost", {
+            cssClass : "js-type-color_ghost",
+            cssTextClass : "js-text-white",
+            portugueseTypeName : "Fantasma"
         });
-        Pokemon.typeMap.set("steel", {
-            cssClass : "type-color_steel",
-            cssTextColorClass : "text-black",
-            portugueseType : "Aço"
+        typeMap.set("steel", {
+            cssClass : "js-type-color_steel",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Aço"
         });
-        Pokemon.typeMap.set("fire", {
-            cssClass : "type-color_fire",
-            cssTextColorClass : "text-black",
-            portugueseType : "Fogo"
+        typeMap.set("fire", {
+            cssClass : "js-type-color_fire",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Fogo"
         });
-        Pokemon.typeMap.set("water", {
-            cssClass : "type-color_water",
-            cssTextColorClass : "text-black",
-            portugueseType : "Água"
+        typeMap.set("water", {
+            cssClass : "js-type-color_water",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Água"
         });
-        Pokemon.typeMap.set("grass", {
-            cssClass : "type-color_grass",
-            cssTextColorClass : "text-black",
-            portugueseType : "Grama"
+        typeMap.set("grass", {
+            cssClass : "js-type-color_grass",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Grama"
         });
-        Pokemon.typeMap.set("electric", {
-            cssClass : "type-color_electric",
-            cssTextColorClass : "text-black",
-            portugueseType : "Elétrico"
+        typeMap.set("electric", {
+            cssClass : "js-type-color_electric",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Elétrico"
         });
-        Pokemon.typeMap.set("psychic", {
-            cssClass : "type-color_psychic",
-            cssTextColorClass : "text-black",
-            portugueseType : "Psíquico"
+        typeMap.set("psychic", {
+            cssClass : "js-type-color_psychic",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Psíquico"
         });
-        Pokemon.typeMap.set("ice", {
-            cssClass : "type-color_ice",
-            cssTextColorClass : "text-black",
-            portugueseType : "Gelo"
+        typeMap.set("ice", {
+            cssClass : "js-type-color_ice",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Gelo"
         });
-        Pokemon.typeMap.set("dragon", {
-            cssClass : "type-color_dragon",
-            cssTextColorClass : "text-white",
-            portugueseType : "Dragão"
+        typeMap.set("dragon", {
+            cssClass : "js-type-color_dragon",
+            cssTextClass : "js-text-white",
+            portugueseTypeName : "Dragão"
         });
-        Pokemon.typeMap.set("dark", {
-            cssClass : "type-color_dark",
-            cssTextColorClass : "text-white",
-            portugueseType : "Sombrio"
+        typeMap.set("dark", {
+            cssClass : "js-type-color_dark",
+            cssTextClass : "js-text-white",
+            portugueseTypeName : "Sombrio"
         });
-        Pokemon.typeMap.set("fairy", {
-            cssClass : "type-color_fairy",
-            cssTextColorClass : "text-black",
-            portugueseType : "Fada"
+        typeMap.set("fairy", {
+            cssClass : "js-type-color_fairy",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Fada"
         });
-        Pokemon.typeMap.set("unknown", {
-            cssClass : "type-color_unknown",
-            cssTextColorClass : "text-black",
-            portugueseType : "???"
+        typeMap.set("unknown", {
+            cssClass : "js-type-color_unknown",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "???"
         });
-        Pokemon.typeMap.set("shadow", {
-            cssClass : "type-color_shadow",
-            cssTextColorClass : "text-black",
-            portugueseType : "Sombra"
+        typeMap.set("shadow", {
+            cssClass : "js-type-color_shadow",
+            cssTextClass : "js-text-black",
+            portugueseTypeName : "Sombra"
         });
 
         return typeMap;

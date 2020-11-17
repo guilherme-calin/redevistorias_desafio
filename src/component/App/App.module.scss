@@ -1,39 +1,49 @@
+/*
+    Convenção de nomes de classes utilizada:
+    - Classe escrita em Upper Camel Case (DesseJeito) se refere ao elemento div raiz do componente.
+      As demais classes são escritas em Snake Case(desse-jeito), que é a convenção utilizada pelo CSS.
+    - Sem prefixo "js": Classe de estilização do componente.
+      Pode ser alterada sem que haja a possibilidade de alterar o comportamento do componente.
+    - Com prefixo "js": indica que a classe é incluída/removida dos elementos por Javascript.
+      Deve-se verificar o código do controller do componente ao realizar alterações.
+*/
 .App {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
   font-family: inherit;
+  z-index: 1;
 
   main {
     //50px da parte vermelha (top e bottom) e 25px da parte branca (top e bottom)
+    //10px da parte lateral branca
+    align-items: center;
     align-self: center;
+    background-color: #272727;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #272727;
     min-height: calc(100vh - 50px - 25px - 25px - 50px);
     width: calc(100% - 10px - 10px);
   }
 
   img {
-    align-self: center;
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
   }
 
   input {
     align-self: center;
+    box-shadow: none;
     display: block;
-    width: 90%;
+    font-family: Roboto;
     font-size: 1.2rem;
     height: 5vh;
     max-width: 500px;
-    padding: 1rem;
     outline: none;
-    box-shadow: none;
+    padding: 1rem;
     transition: box-shadow 0.1s linear;
-    font-family: Roboto;
+    width: 90%;
   }
 
   input:focus {
@@ -45,6 +55,7 @@
     border-radius: 1px;
     margin: 1rem 0;
     width: 40%;
+    max-width: 150px;
     font-size: 1.2rem;
     font-family: Roboto;
     color: #272727;
@@ -65,44 +76,87 @@
   }
 }
 
+.img-container {
+  width: 100%;
+  max-width: 600px;
+}
+
 .app-body {
   //Header e Footer possuem 50px de altura cada, e cada lateral possui 15px
   align-self: center;
+  background-color: #F5F5F5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: whitesmoke;
   min-height: calc(100vh - 50px - 50px);
   width: calc(100% - 15px - 15px);
+}
 
-  .app-body_head {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 25px;
-  }
+.app-body_head {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  justify-content: center;
+}
 
-  .app-body_foot {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 25px;
+.app-body_foot {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  justify-content: space-between;
 
-    .small-circle {
-      margin-left: 1rem;
-      margin-right: 1rem;
-    }
+  .small-circle {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }
 
+.pokemon-info-container {
+  height: 95vh;
+  max-height: 600px;
+  position: fixed;
+  width: 330px;
+  z-index: 10;
+}
+
+.js-visible {
+  top: 0;
+  right: 15px;
+}
+
+.js-invisible {
+  top: -500px;
+  right: -500px;
+}
+
+//Classes utilizadas no CSSTransition, para animação
+.js-pokemon-info-container-enter {
+  right: -500px;
+  top: -500px;
+}
+.js-pokemon-info-container-enter-active {
+  right: 15px;
+  top: 0;
+  transition: right 500ms;
+}
+.js-pokemon-info-container-exit {
+  right: 15px;
+  top: 0;
+}
+.js-pokemon-info-container-exit-active {
+  right: -500px;
+  top: 0;
+  transition: right 500ms;
+}
 .page-control-container:last-of-type {
   align-self: center;
   margin: 0 0 0.5rem;
 }
 
 .results-container {
+  padding: 0 5%;
   width: 100%;
 }
 
@@ -114,8 +168,8 @@
 }
 
 .line-box {
-  width: 20px;
   margin: 0 1rem;
+  width: 20px;
 }
 
 .line {
@@ -137,12 +191,12 @@
 }
 
 .loading {
-  height: 150px;
-  width: 150px;
+  animation: spin 1s linear infinite;
   background-image: url("./assets/pokeball.png");
   background-repeat: no-repeat;
   background-size: cover;
-  animation: spin 1s linear infinite;
+  height: 150px;
+  width: 150px;
 }
 
 .loading.in-center {
@@ -158,6 +212,45 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/*
+    Media queries para responsividade
+ */
+@media only screen and (min-width : 572px) {
+  .App {
+    font-size: 1.2rem;
+
+    input {
+      font-size: 1.5rem;
+    }
+
+    button {
+      font-size: 1.5rem;
+    }
+  }
+
+  .pokemon-info-container {
+    max-height: 700px;
+  }
+}
+
+@media only screen and (min-width : 1000px) {
+  .results-container {
+    padding: 0 10%;
+  }
+}
+
+@media only screen and (min-width : 1280px) {
+  .results-container {
+    padding: 0 20%;
+  }
+}
+
+@media only screen and (min-width : 1692px) {
+  .pokemon-info-container {
+    top: 50px;
   }
 }
 

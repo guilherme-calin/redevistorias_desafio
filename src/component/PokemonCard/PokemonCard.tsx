@@ -3,7 +3,8 @@ import styles from './PokemonCard.module.scss';
 import Pokemon from "../../model/Pokemon";
 
 type Props = {
-    pokemon :Pokemon
+    pokemon :Pokemon,
+    onClick : (pokemon :Pokemon) => void
 };
 type State = {};
 
@@ -20,7 +21,7 @@ export default class PokemonCard extends Component<Props, State> {
         let imageUrl :string = `/sprites/${this.props.pokemon.getCode()}.png`
 
         return (
-            <div className={styles["PokemonCard"]}>
+            <div className={styles["PokemonCard"]} onClick={this.onClickHandler}>
                 <div className={`${styles["text"]} ${styles["code"]}`}>
                     <span>#{this.props.pokemon.getCode()}</span>
                 </div>
@@ -30,6 +31,12 @@ export default class PokemonCard extends Component<Props, State> {
                 <div className={`${styles["text"]} ${styles["name"]}`}>{this.props.pokemon.getName()}</div>
             </div>
         );
+    }
+
+    public onClickHandler = () :void => {
+        this.props.onClick(this.props.pokemon);
+
+        return
     }
 }
 

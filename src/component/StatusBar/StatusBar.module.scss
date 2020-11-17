@@ -1,0 +1,40 @@
+/*
+    Convenção de nomes de classes utilizada:
+    - Classe escrita em Upper Camel Case (DesseJeito) se refere ao elemento div raiz do componente.
+      As demais classes são escritas em Snake Case(desse-jeito), que é a convenção utilizada pelo CSS.
+    - Sem prefixo "js": Classe de estilização do componente.
+      Pode ser alterada sem que haja a possibilidade de alterar o comportamento do componente.
+    - Com prefixo "js": indica que a classe é incluída/removida dos elementos por Javascript.
+      Deve-se verificar o código do controller do componente ao realizar alterações.
+*/
+
+.StatusBar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.max-value-bar {
+  background-color: #C4C4C4;
+  border-radius: 0 5px 5px 0px;
+  height: 3vw;
+  max-width: 100%;
+  max-height: 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.value-bar {
+  background: rgb(51,122,183);
+  background: linear-gradient(157deg, rgba(51,122,183,1) 30%, rgba(28,97,189,1) 100%);
+  border-radius: 0 5px 5px 0px;
+  height: 3vw;
+  max-height: 20px;
+  max-width: 100%;
+  position: absolute;
+  z-index: 2;
+}

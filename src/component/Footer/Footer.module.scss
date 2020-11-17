@@ -1,10 +1,19 @@
+/*
+    Convenção de nomes de classes utilizada:
+    - Classe escrita em Upper Camel Case (DesseJeito) se refere ao elemento div raiz do componente.
+      As demais classes são escritas em Snake Case(desse-jeito), que é a convenção utilizada pelo CSS.
+    - Sem prefixo "js": Classe de estilização do componente.
+      Pode ser alterada sem que haja a possibilidade de alterar o comportamento do componente.
+    - Com prefixo "js": indica que a classe é incluída/removida dos elementos por Javascript.
+      Deve-se verificar o código do controller do componente ao realizar alterações.
+*/
 .Footer {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
   height: 50px;
   padding: 0 1rem;
-  justify-content: space-between;
 }
 
 .circle {

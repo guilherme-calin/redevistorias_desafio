@@ -1,24 +1,42 @@
+/*
+    Convenção de nomes de classes utilizada:
+    - Classe escrita em Upper Camel Case (DesseJeito) se refere ao elemento div raiz do componente.
+      As demais classes são escritas em Snake Case(desse-jeito), que é a convenção utilizada pelo CSS.
+    - Sem prefixo "js": Classe de estilização do componente.
+      Pode ser alterada sem que haja a possibilidade de alterar o comportamento do componente.
+    - Com prefixo "js": indica que a classe é incluída/removida dos elementos por Javascript.
+      Deve-se verificar o código do controller do componente ao realizar alterações.
+*/
+
 .ResultsPage {
-  margin: 0.5rem 0;
   display: flex;
   flex-direction: column;
+  margin: 0.5rem 0;
+}
 
-  section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    transition: opacity linear 0.1s;
-  }
+.results-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  transition: opacity linear 0.1s;
+  z-index: 2;
 }
 
 .result-container {
-  flex: 0 0 140px;
+  flex: 1 1 40%;
+  max-width: 240px;
   margin: 0.4rem 0.15rem;
+  transition: opacity linear 0.1s;
+  cursor: pointer;
+}
 
+.result-container:hover {
+  opacity: 0.5;
 }
 
 .loading {
+  z-index: 1;
   align-self: center;
   position: absolute;
   height: 150px;
@@ -28,10 +46,6 @@
   background-size: cover;
   animation: spin 1s linear infinite;
   transition: opacity linear 0.1s;
-}
-
-.loading.in-center {
-  margin: auto;
 }
 
 .js-inactive {

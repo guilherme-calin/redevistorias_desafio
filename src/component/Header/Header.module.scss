@@ -1,3 +1,13 @@
+/*
+    Convenção de nomes de classes utilizada:
+    - Classe escrita em Upper Camel Case (DesseJeito) se refere ao elemento div raiz do componente.
+      As demais classes são escritas em Snake Case(desse-jeito), que é a convenção utilizada pelo CSS.
+    - Sem prefixo "js": Classe de estilização do componente.
+      Pode ser alterada sem que haja a possibilidade de alterar o comportamento do componente.
+    - Com prefixo "js": indica que a classe é incluída/removida dos elementos por Javascript.
+      Deve-se verificar o código do controller do componente ao realizar alterações.
+*/
+
 .Header {
   display: flex;
   flex-direction: row;
@@ -20,8 +30,6 @@
   background: #38387C;
   background: radial-gradient(circle, rgba(14,118,223,1) 0%, rgba(28,97,189,1) 13%, rgba(56,56,124,1) 33%);
   border-radius: 50%;
-  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
   height: 27px;
   width: 27px;
