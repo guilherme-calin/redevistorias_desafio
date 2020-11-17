@@ -7,7 +7,7 @@ import styles from './App.module.scss';
 import Header from "../Header/Header";
 import PageControl from "../PageControl/PageControl";
 import ResultsPage from "../ResultsPage/ResultsPage";
-import PokemonInfo from "../PokemonInfo/PokemonInfo";
+import PokemonInformation from "../PokemonInformation/PokemonInformation";
 import Footer from "../Footer/Footer";
 
 //Serviços
@@ -28,7 +28,7 @@ type State = {
     lastTextSearch :string,
     currentPage :number,
     recordsPerPage :number,
-    isPokemonInfoVisible :boolean,
+    isPokemonInformationVisible :boolean,
     selectedPokemon :Pokemon
 };
 
@@ -83,13 +83,13 @@ export default class App extends Component<Props, State> {
             lastTextSearch : "",
             currentPage : 1,
             recordsPerPage,
-            isPokemonInfoVisible : false,
+            isPokemonInformationVisible : false,
             selectedPokemon : new Pokemon("0", "estado inicial")
         };
 
         this.inputRef = React.createRef();
         this.api = new PokeApi();
-        this.animationClassNamesPrefix = "js-pokemon-info-container";
+        this.animationClassNamesPrefix = "js-pokemon-information-container";
         this.animationClassNames = {
                 enter : styles[`${this.animationClassNamesPrefix}-enter`],
                 enterActive : styles[`${this.animationClassNamesPrefix}-enter-active`],
@@ -157,7 +157,7 @@ export default class App extends Component<Props, State> {
     render(): ReactNode {
         let cssVisibilityClass :string;
 
-        if(this.state.isPokemonInfoVisible) {
+        if(this.state.isPokemonInformationVisible) {
             cssVisibilityClass = styles["js-visible"];
         }else {
             cssVisibilityClass = styles["js-invisible"];
@@ -243,13 +243,13 @@ export default class App extends Component<Props, State> {
                     this.state.isPageLoading ?
                         null
                         :
-                        <CSSTransition in={this.state.isPokemonInfoVisible}
+                        <CSSTransition in={this.state.isPokemonInformationVisible}
                                        classNames={this.animationClassNames}
                                        timeout={this.animationTimeDuration}>
-                            <div className={`${styles["pokemon-info-container"]} ${cssVisibilityClass}`}>
-                                <PokemonInfo pokemon={this.state.selectedPokemon}
-                                             exitButtonCallback={this.onPokemonInformationExitButtonClick}>
-                                </PokemonInfo>
+                            <div className={`${styles["pokemon-information-container"]} ${cssVisibilityClass}`}>
+                                <PokemonInformation pokemon={this.state.selectedPokemon}
+                                                    exitButtonCallback={this.onPokemonInformationExitButtonClick}>
+                                </PokemonInformation>
                             </div>
                         </CSSTransition>
                 }
@@ -316,7 +316,7 @@ export default class App extends Component<Props, State> {
         */
         this.setState({
             selectedPokemon : pokemon,
-            isPokemonInfoVisible : true
+            isPokemonInformationVisible : true
         });
 
         /*
@@ -343,7 +343,7 @@ export default class App extends Component<Props, State> {
     
     public onPokemonInformationExitButtonClick = () :void => {
         this.setState({
-            isPokemonInfoVisible : false
+            isPokemonInformationVisible : false
         });
 
         return;

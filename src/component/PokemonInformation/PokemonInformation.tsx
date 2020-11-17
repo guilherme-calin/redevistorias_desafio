@@ -1,7 +1,7 @@
 //Componentes essenciais e estilo
 import React, {Component, Fragment, ReactNode} from 'react';
 import CSSTransition from "react-transition-group/CSSTransition";
-import styles from './PokemonInfo.module.scss';
+import styles from './PokemonInformation.module.scss';
 
 //Componentes
 import StatusBar from "../StatusBar/StatusBar";
@@ -18,7 +18,7 @@ type Props = {
 };
 type State = {};
 
-export default class PokemonInfo extends Component<Props, State> {
+export default class PokemonInformation extends Component<Props, State> {
     public animationClassNamesPrefix :string;
     public animationClassNames :any;
     public animationTimeDuration :number;
@@ -70,7 +70,7 @@ export default class PokemonInfo extends Component<Props, State> {
         }
 
         return (
-            <div className={`${styles["PokemonInfo"]}`}>
+            <div className={`${styles["PokemonInformation"]}`}>
                 <section className={styles["head"]}>
                     <div className={`${styles["small-circle"]} ${styles["red"]}`}/>
                     <div className={`${styles["small-circle"]} ${styles["red"]}`}/>

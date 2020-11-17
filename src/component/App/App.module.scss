@@ -113,7 +113,7 @@
   }
 }
 
-.pokemon-info-container {
+.pokemon-information-container {
   height: 95vh;
   max-height: 600px;
   position: fixed;
@@ -132,20 +132,20 @@
 }
 
 //Classes utilizadas no CSSTransition, para animação
-.js-pokemon-info-container-enter {
+.js-pokemon-information-container-enter {
   right: -500px;
   top: -500px;
 }
-.js-pokemon-info-container-enter-active {
+.js-pokemon-information-container-enter-active {
   right: 15px;
   top: 0;
   transition: right 500ms;
 }
-.js-pokemon-info-container-exit {
+.js-pokemon-information-container-exit {
   right: 15px;
   top: 0;
 }
-.js-pokemon-info-container-exit-active {
+.js-pokemon-information-container-exit-active {
   right: -500px;
   top: 0;
   transition: right 500ms;
@@ -231,7 +231,7 @@
     }
   }
 
-  .pokemon-info-container {
+  .pokemon-information-container {
     max-height: 700px;
   }
 }
@@ -261,7 +261,7 @@
     }
   }
 
-  .pokemon-info-container {
+  .pokemon-information-container {
     max-height: 750px;
     width: 380px;
     top: 50px;
