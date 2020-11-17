@@ -249,6 +249,18 @@
 }
 
 @media only screen and (min-width : 1692px) {
+  .App {
+    font-size: 1.4rem;
+
+    input {
+      font-size: 1.7rem;
+    }
+
+    button {
+      font-size: 1.7rem;
+    }
+  }
+
   .pokemon-info-container {
     top: 50px;
   }
