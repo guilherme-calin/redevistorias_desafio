@@ -166,20 +166,6 @@ export default class App extends Component<Props, State> {
         return (
             <div className={styles.App}>
                 <Header/>
-                {
-                    this.state.isPageLoading ?
-                        null
-                        :
-                        <CSSTransition in={this.state.isPokemonInfoVisible}
-                                       classNames={this.animationClassNames}
-                                       timeout={this.animationTimeDuration}>
-                            <div className={`${styles["pokemon-info-container"]} ${cssVisibilityClass}`}>
-                                <PokemonInfo pokemon={this.state.selectedPokemon}
-                                             exitButtonCallback={this.onPokemonInformationExitButtonClick}>
-                                </PokemonInfo>
-                            </div>
-                        </CSSTransition>
-                }
 
                 <section className={styles["app-body"]}>
                     <section className={styles["app-body_head"]}>
@@ -249,7 +235,24 @@ export default class App extends Component<Props, State> {
                         </div>
                     </section>
                 </section>
+
                 <Footer/>
+
+
+                {
+                    this.state.isPageLoading ?
+                        null
+                        :
+                        <CSSTransition in={this.state.isPokemonInfoVisible}
+                                       classNames={this.animationClassNames}
+                                       timeout={this.animationTimeDuration}>
+                            <div className={`${styles["pokemon-info-container"]} ${cssVisibilityClass}`}>
+                                <PokemonInfo pokemon={this.state.selectedPokemon}
+                                             exitButtonCallback={this.onPokemonInformationExitButtonClick}>
+                                </PokemonInfo>
+                            </div>
+                        </CSSTransition>
+                }
             </div>
         );
     }
