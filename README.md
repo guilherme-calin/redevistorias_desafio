@@ -3,7 +3,7 @@ Repositório do desafio front-end da empresa Rede Vistorias de Florianópolis.
 
 O *code challenge* se refere a um sistema web para busca e consulta de Pokemons a partir da API [PokeAPI](https://pokeapi.co/). 
 É possível pesquisar o Pokemon por nome ou código numérico, sem ser necessário digitar o texto exato. 
-A busca irá identificar qualquer Pokemomon que possua uma correspondência parcial com o que
+A busca irá identificar qualquer Pokemon que possua uma correspondência parcial com o que
 foi digitado. 
 
 ### Pré-Requisitos
@@ -47,7 +47,7 @@ Primeiramente foi definido o *layout* da aplicação utilizando o Figma, uma fer
 para prototipação de interfaces.
 
 O primeiro *layout* definido foi para telas de dispositivos móveis com 360 *pixels*
-de largura, seguindo o paradigma *Mobile First*. Ao finalizá-lo, foi então criado 
+de largura, seguindo o paradigma *Mobile-First*. Ao finalizá-lo, foi então criado 
 o layout para telas *Full HD*, com 1920 *pixels* de largura. Os *breakpoints* para telas
 intermediárias foram definidos ao final do projeto.
 
